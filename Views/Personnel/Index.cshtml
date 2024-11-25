@@ -1,0 +1,115 @@
+﻿@model IEnumerable<XXMountainBrigadeNew.Models.Personnel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<p>
+    <a asp-action="Index">All Personnels</a>
+</p>
+
+<form asp-action="Index" method="get">
+    <div class="input-group md-form form-sm form-2 pl-0">
+        <input name="FirstName" class="form-control my-0 py-1 red-border" type="text" placeholder="Search by First Name" area-label="Search" value="@ViewBag.FirstName" />
+        <div class="input-group-append">
+            <span class="input-group-text red lighten-3" id="basic-text1">
+                <i class="fas fa-search text-grey" area-hidden="true"> </i>
+            </span>
+        </div>
+    </div>
+</form>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.PersId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TypeOfPersonnel)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PersNo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LastName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateOfBirth)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PermanentAddress)
+            </th>
+             <th>
+                @Html.DisplayNameFor(model => model.CoyName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RankName)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.PersId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TypeOfPersonnel)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PersNo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateOfBirth)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PermanentAddress)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CoyName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RankName)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+
+@section scripts {
+    <script>
+        $(function () {
+            // Trigger form submit when the search icon is clicked
+            $("#basic-text1").click(function () {
+                $("form").submit();
+            });
+
+            // Trigger form submit on pressing Enter
+            $("input[name='FirstName']").keypress(function (e) {
+                if (e.which === 13) {  // Enter key is pressed
+                    $("form").submit();
+                }
+            });
+        });
+    </script>
+}
